@@ -1,16 +1,25 @@
 # flutter_start
 
-A new Flutter project.
+<img src="docs/dash.png" width="50%"/>
 
-## Getting Started
+A Flutter wizard inspired by spring boot starter
 
-This project is a starting point for a Flutter application.
+## Purpose
 
-A few resources to get you started if this is your first Flutter project:
+Flutter can make many things for you. It can help you to build apps for multiple target platforms like android, ios, linux, macos and windows. 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+It can be hard for beginners to compose with all of these options.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This app generates for you `flutter create`, `flutter pub add` commands with few clicks:
+
+* name your package
+
+* name your app
+
+* add a description
+
+* select your dependencies
+
+And voilà !
+
+<img src="docs/built_with_flutter.svg" width="50%"/>
