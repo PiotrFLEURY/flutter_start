@@ -24,7 +24,8 @@ extension PackageListStateExtension on PackageListState {
 
   List<String> get filteredPackages => packages
       .where((package) => package.toLowerCase().contains(filter.toLowerCase()))
-      .toList();
+      .toList()
+    ..sort((a, b) => a.compareTo(b));
 
   List<String> get nonDevCheckedPackages => checkedPackages
       .where((checkedPackage) => !checkedPackage.dev)
