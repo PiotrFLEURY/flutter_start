@@ -4,6 +4,8 @@
 
 A Flutter wizard inspired by spring boot starter
 
+<img src="docs/capture.png"/>
+
 ## Purpose
 
 Flutter can make many things for you. It can help you to build apps for multiple target platforms like android, ios, linux, macos and windows. 
