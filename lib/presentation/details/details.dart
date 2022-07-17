@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_start/domain/entities/package_details.dart';
+import 'package:flutter_start/domain/entities/entities.dart';
 import 'package:flutter_start/presentation/details/blocs/details_cubit.dart';
 import 'package:flutter_start/presentation/details/blocs/states/details_state.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Details extends StatelessWidget {
   static const route = 'details/:packageName';
@@ -40,6 +41,7 @@ class _Details extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: _PackageTitle(state.packageDetails),
             ),
+            _SupportedPlatforms(state.packageDetails),
             _PackageScore(state.packageDetails),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -50,6 +52,32 @@ class _Details extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _SupportedPlatforms extends StatelessWidget {
+  final PackageDetails? _packageDetails;
+  const _SupportedPlatforms(this._packageDetails);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: _packageDetails?.platforms.map(
+              (platform) {
+                return Chip(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  label: Text(
+                    platform,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                );
+              },
+            ).toList() ??
+            [],
       ),
     );
   }
@@ -66,10 +94,24 @@ class _PackageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      '$_name $_version',
-      style: Theme.of(context).textTheme.headline3,
+    return Row(
+      children: [
+        Text(
+          '$_name $_version',
+          style: Theme.of(context).textTheme.headline3,
+        ),
+        IconButton(
+          onPressed: _launchPubUrl,
+          icon: const Icon(Icons.open_in_browser),
+        ),
+      ],
     );
+  }
+
+  void _launchPubUrl() {
+    if (_details == null) return;
+    final url = 'https://pub.dev/packages/${_details?.name}';
+    launchUrl(Uri.parse(url));
   }
 }
 

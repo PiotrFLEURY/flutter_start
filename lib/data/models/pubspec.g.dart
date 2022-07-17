@@ -12,6 +12,9 @@ Pubspec _$PubspecFromJson(Map<String, dynamic> json) => Pubspec(
       version: json['version'] as String?,
       homepage: json['homepage'] as String?,
       repository: json['repository'] as String?,
+      flutter: json['flutter'] == null
+          ? null
+          : Flutter.fromJson(json['flutter'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PubspecToJson(Pubspec instance) => <String, dynamic>{
@@ -20,4 +23,5 @@ Map<String, dynamic> _$PubspecToJson(Pubspec instance) => <String, dynamic>{
       'version': instance.version,
       'homepage': instance.homepage,
       'repository': instance.repository,
+      'flutter': instance.flutter,
     };

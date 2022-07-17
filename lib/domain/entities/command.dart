@@ -4,12 +4,16 @@ class Command {
 
   const Command(this.value, {this.arguments = const []});
 
-  factory Command.flutterCreate(Map<String, String> arguments) {
+  factory Command.flutterCreate(
+    Map<String, String> arguments, {
+    required String name,
+  }) {
     return Command(
       'flutter create',
       arguments: arguments.entries.map((entry) {
         return '--${entry.key}=${entry.value}';
-      }).toList(),
+      }).toList()
+        ..add(name),
     );
   }
 

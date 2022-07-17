@@ -18,16 +18,18 @@ class MetaDataState with _$MetaDataState {
 
 extension MetaDataStateExtension on MetaDataState {
   String generateCommand() {
-    return Command.flutterCreate({
-      'org': org,
-      'name': name,
-      'description': description,
-      if (platforms.isNotEmpty) 'platforms': platforms.join(','),
-      if (platforms.contains('android') &&
-          androidLanguage != defaultAndroidLanguage)
-        'android-language': androidLanguage,
-      if (platforms.contains('ios') && iosLanguage != defaultIosLanguage)
-        'ios-language': iosLanguage,
-    }).toString();
+    return Command.flutterCreate(
+      {
+        'org': org,
+        'description': '"$description"',
+        if (platforms.isNotEmpty) 'platforms': platforms.join(','),
+        if (platforms.contains('android') &&
+            androidLanguage != defaultAndroidLanguage)
+          'android-language': androidLanguage,
+        if (platforms.contains('ios') && iosLanguage != defaultIosLanguage)
+          'ios-language': iosLanguage,
+      },
+      name: name,
+    ).toString();
   }
 }

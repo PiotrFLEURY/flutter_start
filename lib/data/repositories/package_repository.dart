@@ -1,7 +1,9 @@
+import 'package:flutter_start/data/models/platforms.dart';
 import 'package:flutter_start/data/sources/remote/pub_api.dart';
 import 'package:flutter_start/domain/entities/package_details.dart';
 import 'package:flutter_start/domain/entities/package_list.dart';
 import 'package:flutter_start/domain/repositories/package_repository.dart';
+import 'package:flutter_start/presentation/home/blocs/meta_data_cubit.dart';
 
 class PackageRepositoryImpl extends PackageRepository {
   final PubApi _pubApi;
@@ -20,6 +22,20 @@ class PackageRepositoryImpl extends PackageRepository {
     final package = await _pubApi.getPackage(packageName);
     final score = await _pubApi.getScore(packageName);
 
+    final Platforms? platformsModel =
+        package.latest?.pubspec?.flutter?.plugin?.platforms;
+
+    final platforms = platformsModel == null
+        ? supportedPlatforms
+        : [
+            if (platformsModel?.android != null) 'android',
+            if (platformsModel?.ios != null) 'ios',
+            if (platformsModel?.web != null) 'web',
+            if (platformsModel?.windows != null) 'windows',
+            if (platformsModel?.macos != null) 'macos',
+            if (platformsModel?.linux != null) 'linux',
+          ];
+
     return PackageDetails(
       name: package.name ?? '',
       description: package.latest?.pubspec?.description ?? '',
@@ -27,6 +43,7 @@ class PackageRepositoryImpl extends PackageRepository {
       version: package.latest?.version ?? '',
       likes: score.likeCount ?? 0,
       pubPoints: score.grantedPoints ?? 0,
+      platforms: platforms,
     );
   }
 }

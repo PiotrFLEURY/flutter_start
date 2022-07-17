@@ -5,6 +5,7 @@ class PackageDetails {
   final String version;
   final int likes;
   final int pubPoints;
+  final List<String> platforms;
 
   PackageDetails({
     required this.name,
@@ -13,5 +14,6 @@ class PackageDetails {
     required this.version,
     required this.likes,
     required this.pubPoints,
+    required this.platforms,
   });
 }
