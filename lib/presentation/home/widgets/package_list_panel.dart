@@ -17,6 +17,13 @@ class PackageListPanel extends StatelessWidget {
             Text('Dependencies', style: Theme.of(context).textTheme.headline4),
             // Text field to enter the package name.
             const Filter(),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'Click on any selected package to mark it as dev',
+                style: TextStyle(fontSize: 12),
+              ),
+            ),
             const SelectedPackageList(),
             // List of packages.
             const Expanded(
@@ -24,23 +31,24 @@ class PackageListPanel extends StatelessWidget {
             ),
             BlocBuilder<PackageListCubit, PackageListState>(
               builder: (context, state) {
-                if (state.nonDevCheckedPackages.isEmpty) {
+                final checkedPackagesCommand = state
+                        .nonDevCheckedPackages.isEmpty
+                    ? ''
+                    : 'flutter pub add ${state.nonDevCheckedPackages.join(' ')}';
+                final devCheckPackagesCommand = state.devCheckedPackages.isEmpty
+                    ? ''
+                    : 'flutter pub add --dev ${state.devCheckedPackages.join(' ')}';
+                if (checkedPackagesCommand.isEmpty &&
+                    devCheckPackagesCommand.isEmpty) {
                   return Container();
                 }
                 return TerminalCommand(
-                    command:
-                        'flutter pub add ${state.nonDevCheckedPackages.join(' ')}');
+                  command: [checkedPackagesCommand, devCheckPackagesCommand]
+                      .where((e) => e.isNotEmpty)
+                      .join(' && '),
+                );
               },
             ),
-            BlocBuilder<PackageListCubit, PackageListState>(
-                builder: (context, state) {
-              if (state.devCheckedPackages.isEmpty) {
-                return Container();
-              }
-              return TerminalCommand(
-                  command:
-                      'flutter pub add --dev ${state.devCheckedPackages.join(' ')}');
-            }),
           ],
         ),
       ),
