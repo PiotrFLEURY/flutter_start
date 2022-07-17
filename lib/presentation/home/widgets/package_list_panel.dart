@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_start/domain/entities/command.dart';
 import 'package:flutter_start/presentation/home/blocs/blocs.dart';
 import 'package:flutter_start/presentation/home/blocs/states/states.dart';
 import 'package:flutter_start/presentation/home/widgets/widgets.dart';
@@ -31,20 +32,19 @@ class PackageListPanel extends StatelessWidget {
             ),
             BlocBuilder<PackageListCubit, PackageListState>(
               builder: (context, state) {
-                final checkedPackagesCommand = state
-                        .nonDevCheckedPackages.isEmpty
-                    ? ''
-                    : 'flutter pub add ${state.nonDevCheckedPackages.join(' ')}';
-                final devCheckPackagesCommand = state.devCheckedPackages.isEmpty
-                    ? ''
-                    : 'flutter pub add --dev ${state.devCheckedPackages.join(' ')}';
-                if (checkedPackagesCommand.isEmpty &&
-                    devCheckPackagesCommand.isEmpty) {
+                final checkedPackagesCommand =
+                    Command.flutterPubAdd(state.nonDevCheckedPackages);
+                final devCheckPackagesCommand = Command.flutterPubAdd(
+                  state.devCheckedPackages,
+                  dev: true,
+                );
+                if (checkedPackagesCommand.hasNoArguments &&
+                    devCheckPackagesCommand.hasNoArguments) {
                   return Container();
                 }
                 return TerminalCommand(
                   command: [checkedPackagesCommand, devCheckPackagesCommand]
-                      .where((e) => e.isNotEmpty)
+                      .where((e) => e.hasArguments)
                       .join(' && '),
                 );
               },

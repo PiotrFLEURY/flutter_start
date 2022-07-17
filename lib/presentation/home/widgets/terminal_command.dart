@@ -13,7 +13,7 @@ class TerminalCommand extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16.0),
-      margin: const EdgeInsets.symmetric(vertical: 32.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
       // make terminal like decoration
       decoration: BoxDecoration(
         color: Colors.black,

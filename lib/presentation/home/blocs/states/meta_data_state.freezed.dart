@@ -20,6 +20,8 @@ mixin _$MetaDataState {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get platforms => throw _privateConstructorUsedError;
+  String get androidLanguage => throw _privateConstructorUsedError;
+  String get iosLanguage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MetaDataStateCopyWith<MetaDataState> get copyWith =>
@@ -32,7 +34,12 @@ abstract class $MetaDataStateCopyWith<$Res> {
           MetaDataState value, $Res Function(MetaDataState) then) =
       _$MetaDataStateCopyWithImpl<$Res>;
   $Res call(
-      {String org, String name, String description, List<String> platforms});
+      {String org,
+      String name,
+      String description,
+      List<String> platforms,
+      String androidLanguage,
+      String iosLanguage});
 }
 
 /// @nodoc
@@ -50,6 +57,8 @@ class _$MetaDataStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? platforms = freezed,
+    Object? androidLanguage = freezed,
+    Object? iosLanguage = freezed,
   }) {
     return _then(_value.copyWith(
       org: org == freezed
@@ -68,6 +77,14 @@ class _$MetaDataStateCopyWithImpl<$Res>
           ? _value.platforms
           : platforms // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      androidLanguage: androidLanguage == freezed
+          ? _value.androidLanguage
+          : androidLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
+      iosLanguage: iosLanguage == freezed
+          ? _value.iosLanguage
+          : iosLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -80,7 +97,12 @@ abstract class _$$_MetaDataStateCopyWith<$Res>
       __$$_MetaDataStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String org, String name, String description, List<String> platforms});
+      {String org,
+      String name,
+      String description,
+      List<String> platforms,
+      String androidLanguage,
+      String iosLanguage});
 }
 
 /// @nodoc
@@ -100,6 +122,8 @@ class __$$_MetaDataStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? platforms = freezed,
+    Object? androidLanguage = freezed,
+    Object? iosLanguage = freezed,
   }) {
     return _then(_$_MetaDataState(
       org: org == freezed
@@ -118,6 +142,14 @@ class __$$_MetaDataStateCopyWithImpl<$Res>
           ? _value._platforms
           : platforms // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      androidLanguage: androidLanguage == freezed
+          ? _value.androidLanguage
+          : androidLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
+      iosLanguage: iosLanguage == freezed
+          ? _value.iosLanguage
+          : iosLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -129,7 +161,9 @@ class _$_MetaDataState implements _MetaDataState {
       {required this.org,
       required this.name,
       required this.description,
-      required final List<String> platforms})
+      required final List<String> platforms,
+      required this.androidLanguage,
+      required this.iosLanguage})
       : _platforms = platforms;
 
   @override
@@ -146,8 +180,13 @@ class _$_MetaDataState implements _MetaDataState {
   }
 
   @override
+  final String androidLanguage;
+  @override
+  final String iosLanguage;
+
+  @override
   String toString() {
-    return 'MetaDataState(org: $org, name: $name, description: $description, platforms: $platforms)';
+    return 'MetaDataState(org: $org, name: $name, description: $description, platforms: $platforms, androidLanguage: $androidLanguage, iosLanguage: $iosLanguage)';
   }
 
   @override
@@ -160,7 +199,11 @@ class _$_MetaDataState implements _MetaDataState {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
-                .equals(other._platforms, _platforms));
+                .equals(other._platforms, _platforms) &&
+            const DeepCollectionEquality()
+                .equals(other.androidLanguage, androidLanguage) &&
+            const DeepCollectionEquality()
+                .equals(other.iosLanguage, iosLanguage));
   }
 
   @override
@@ -169,7 +212,9 @@ class _$_MetaDataState implements _MetaDataState {
       const DeepCollectionEquality().hash(org),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(_platforms));
+      const DeepCollectionEquality().hash(_platforms),
+      const DeepCollectionEquality().hash(androidLanguage),
+      const DeepCollectionEquality().hash(iosLanguage));
 
   @JsonKey(ignore: true)
   @override
@@ -182,7 +227,9 @@ abstract class _MetaDataState implements MetaDataState {
       {required final String org,
       required final String name,
       required final String description,
-      required final List<String> platforms}) = _$_MetaDataState;
+      required final List<String> platforms,
+      required final String androidLanguage,
+      required final String iosLanguage}) = _$_MetaDataState;
 
   @override
   String get org;
@@ -192,6 +239,10 @@ abstract class _MetaDataState implements MetaDataState {
   String get description;
   @override
   List<String> get platforms;
+  @override
+  String get androidLanguage;
+  @override
+  String get iosLanguage;
   @override
   @JsonKey(ignore: true)
   _$$_MetaDataStateCopyWith<_$_MetaDataState> get copyWith =>

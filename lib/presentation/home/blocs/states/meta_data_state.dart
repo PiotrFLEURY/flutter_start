@@ -1,3 +1,5 @@
+import 'package:flutter_start/domain/entities/command.dart';
+import 'package:flutter_start/presentation/home/blocs/blocs.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'meta_data_state.freezed.dart';
@@ -9,17 +11,23 @@ class MetaDataState with _$MetaDataState {
     required String name,
     required String description,
     required List<String> platforms,
+    required String androidLanguage,
+    required String iosLanguage,
   }) = _MetaDataState;
 }
 
 extension MetaDataStateExtension on MetaDataState {
   String generateCommand() {
-    // platforms
-    final platformsArg =
-        platforms.isEmpty ? '' : '--platforms=${platforms.join(',')}';
-    // flutter create
-    final String create =
-        'flutter create --org=$org --description="$description" --template=app $platformsArg $name';
-    return create;
+    return Command.flutterCreate({
+      'org': org,
+      'name': name,
+      'description': description,
+      if (platforms.isNotEmpty) 'platforms': platforms.join(','),
+      if (platforms.contains('android') &&
+          androidLanguage != defaultAndroidLanguage)
+        'android-language': androidLanguage,
+      if (platforms.contains('ios') && iosLanguage != defaultIosLanguage)
+        'ios-language': iosLanguage,
+    }).toString();
   }
 }

@@ -15,48 +15,59 @@ class MetaDataPanel extends StatelessWidget {
         builder: (context, state) {
           return Column(
             children: [
-              Text('MetaData', style: Theme.of(context).textTheme.headline4),
-              MetaDataField(
-                label: 'org',
-                initialValue: state.org,
-                onChanged: (value) {
-                  context.metaDataCubit.orgChanged(value);
-                },
-              ),
-              MetaDataField(
-                label: 'name',
-                initialValue: state.name,
-                onChanged: (value) {
-                  context.metaDataCubit.nameChanged(value);
-                },
-              ),
-              MetaDataField(
-                label: 'description',
-                initialValue: state.description,
-                onChanged: (value) {
-                  context.metaDataCubit.descriptionChanged(value);
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Platforms',
-                    style: Theme.of(context).textTheme.headline6),
-              ),
-              Wrap(
-                direction: Axis.horizontal,
-                children: supportedPlatforms.map(
-                  (platform) {
-                    return PlatformCheckbox(
-                      label: platform,
-                      value: state.platforms.contains(platform),
+              Expanded(
+                child: ListView(
+                  children: [
+                    Text('MetaData',
+                        style: Theme.of(context).textTheme.headline4),
+                    MetaDataField(
+                      label: 'org',
+                      initialValue: state.org,
                       onChanged: (value) {
-                        context.metaDataCubit.checkPlatform(platform, value);
+                        context.metaDataCubit.orgChanged(value);
                       },
-                    );
-                  },
-                ).toList(),
+                    ),
+                    MetaDataField(
+                      label: 'name',
+                      initialValue: state.name,
+                      onChanged: (value) {
+                        context.metaDataCubit.nameChanged(value);
+                      },
+                    ),
+                    MetaDataField(
+                      label: 'description',
+                      initialValue: state.description,
+                      onChanged: (value) {
+                        context.metaDataCubit.descriptionChanged(value);
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Platforms',
+                          style: Theme.of(context).textTheme.headline6),
+                    ),
+                    Wrap(
+                      direction: Axis.horizontal,
+                      children: supportedPlatforms.map(
+                        (platform) {
+                          return PlatformCheckbox(
+                            label: platform,
+                            value: state.platforms.contains(platform),
+                            onChanged: (value) {
+                              context.metaDataCubit
+                                  .checkPlatform(platform, value);
+                            },
+                          );
+                        },
+                      ).toList(),
+                    ),
+                    if (state.platforms.contains('android'))
+                      const AndroidLanguageSelector(),
+                    if (state.platforms.contains('ios'))
+                      const IosLanguageSelector(),
+                  ],
+                ),
               ),
-              const Spacer(),
               TerminalCommand(
                 command: state.generateCommand(),
               ),

@@ -11,6 +11,19 @@ const supportedPlatforms = [
   'windows',
 ];
 
+const supportedAndroidLanguages = [
+  'java',
+  'kotlin',
+];
+
+const supportedIosLanguages = [
+  'objc',
+  'swift',
+];
+
+const defaultAndroidLanguage = 'kotlin';
+const defaultIosLanguage = 'swift';
+
 class MetaDataCubit extends Cubit<MetaDataState> {
   MetaDataCubit()
       : super(
@@ -19,6 +32,8 @@ class MetaDataCubit extends Cubit<MetaDataState> {
             name: 'my_app',
             description: 'A new Flutter project',
             platforms: supportedPlatforms,
+            androidLanguage: defaultAndroidLanguage,
+            iosLanguage: defaultIosLanguage,
           ),
         );
 
@@ -42,6 +57,14 @@ class MetaDataCubit extends Cubit<MetaDataState> {
 
   void descriptionChanged(String value) {
     emit(state.copyWith(description: value));
+  }
+
+  void androidLanguageChanged(String value) {
+    emit(state.copyWith(androidLanguage: value));
+  }
+
+  void iosLanguageChanged(String value) {
+    emit(state.copyWith(iosLanguage: value));
   }
 }
 
