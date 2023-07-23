@@ -1,0 +1,40 @@
+on: push
+
+jobs:
+  perform-checks:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout sources
+      - uses: actions/checkout@v3
+      # Install Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      # Run pub get
+      - name: Get dependencies
+        run: flutter pub get
+      # Perform static analysis
+      - name: Perform static analysis
+        run: flutter analyze
+      # Check formatting
+      - name: Check formatting
+        run: flutter format --set-exit-if-changed
+      # Run tests
+      - name: Run tests
+        run: flutter test
+  build-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux, macos, windows]
+    steps:
+      # Checkout sources
+      - uses: actions/checkout@v3
+      # Install Flutter
+      - uses: subosito/flutter-action@v2
+      # Run pub get
+      - name: Get dependencies
+        run: flutter pub get
+      # Build app
+      - name: Build app
+        run: flutter build ${{ matrix.platform }}
