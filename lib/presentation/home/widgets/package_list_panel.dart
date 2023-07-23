@@ -16,7 +16,7 @@ class PackageListPanel extends StatelessWidget {
         builder: (context) => Column(
           children: [
             Text('Dependencies',
-                style: Theme.of(context).textTheme.headlineMedium),
+                style: Theme.of(context).textTheme.headlineMedium,),
             // Text field to enter the package name.
             const Filter(),
             const Padding(

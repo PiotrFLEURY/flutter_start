@@ -21,8 +21,10 @@ class PackageListView extends StatelessWidget {
             ),
           ),
         ]
-            .followedBy(state.filteredPackages
-                .map((package) => _buildItem(context, package, state)))
+            .followedBy(
+              state.filteredPackages
+                  .map((package) => _buildItem(context, package, state)),
+            )
             .toList(),
       ),
     );
@@ -45,8 +47,8 @@ class PackageListView extends StatelessWidget {
                 .contains(packageName),
             onChanged: (value) {
               context.packageListCubit.check(
-                value,
                 packageName,
+                packageChecked: value,
               );
             },
           ),

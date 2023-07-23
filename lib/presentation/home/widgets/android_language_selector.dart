@@ -13,7 +13,7 @@ class AndroidLanguageSelector extends StatelessWidget {
       builder: (context, state) => Column(
         children: [
           Text('Android language',
-              style: Theme.of(context).textTheme.titleLarge),
+              style: Theme.of(context).textTheme.titleLarge,),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

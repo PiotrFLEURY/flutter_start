@@ -18,8 +18,10 @@ class MetaDataPanel extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    Text('MetaData',
-                        style: Theme.of(context).textTheme.headlineMedium),
+                    Text(
+                      'MetaData',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
                     MetaDataField(
                       label: 'org',
                       initialValue: state.org,
@@ -43,8 +45,10 @@ class MetaDataPanel extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Platforms',
-                          style: Theme.of(context).textTheme.titleLarge),
+                      child: Text(
+                        'Platforms',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
                     ),
                     Wrap(
                       direction: Axis.horizontal,
@@ -54,8 +58,10 @@ class MetaDataPanel extends StatelessWidget {
                             label: platform,
                             value: state.platforms.contains(platform),
                             onChanged: (value) {
-                              context.metaDataCubit
-                                  .checkPlatform(platform, value);
+                              context.metaDataCubit.checkPlatform(
+                                platform,
+                                platformChecked: value,
+                              );
                             },
                           );
                         },

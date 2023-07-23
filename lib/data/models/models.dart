@@ -2,6 +2,6 @@
 
 export 'latest.dart';
 export 'package.dart';
-export 'score.dart';
-export 'pubspec.dart';
 export 'package_completion.dart';
+export 'pubspec.dart';
+export 'score.dart';

@@ -137,7 +137,7 @@ class _PackageScore extends StatelessWidget {
           _BiColorText(text: '$_likes', subText: ' likes'),
           _BiColorText(text: '$_pubPoints', subText: ' pub points'),
           _BiColorText(
-              text: '${(_score * 100).round()}%', subText: ' popularity'),
+              text: '${(_score * 100).round()}%', subText: ' popularity',),
         ],
       ),
     );

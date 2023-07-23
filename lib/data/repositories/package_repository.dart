@@ -1,4 +1,3 @@
-import 'package:flutter_start/data/models/platforms.dart';
 import 'package:flutter_start/data/sources/remote/pub_api.dart';
 import 'package:flutter_start/domain/entities/package_details.dart';
 import 'package:flutter_start/domain/entities/package_list.dart';
@@ -22,8 +21,7 @@ class PackageRepositoryImpl extends PackageRepository {
     final package = await _pubApi.getPackage(packageName);
     final score = await _pubApi.getScore(packageName);
 
-    final Platforms? platformsModel =
-        package.latest?.pubspec?.flutter?.plugin?.platforms;
+    final platformsModel = package.latest?.pubspec?.flutter?.plugin?.platforms;
 
     final platforms = platformsModel == null
         ? supportedPlatforms

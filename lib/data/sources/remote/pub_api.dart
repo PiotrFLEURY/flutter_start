@@ -6,9 +6,9 @@
 /// Usage: GET https://pub.dev/api/package-name-completion-data
 ///
 
+import 'package:dio/dio.dart';
 import 'package:flutter_start/data/models/models.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:dio/dio.dart';
 
 part 'pub_api.g.dart';
 

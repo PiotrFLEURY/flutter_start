@@ -17,7 +17,7 @@ class SelectedPackageList extends StatelessWidget {
                   child: SelectedPackageChip(
                     checkedPackage: checkedPackage,
                   ),
-                ))
+                ),)
             .toList(),
       ),
     );

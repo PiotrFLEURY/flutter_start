@@ -10,7 +10,7 @@ final getIt = GetIt.I;
 
 void prepareContext() {
   // Dio
-  getIt.registerFactory<Dio>(() => Dio());
+  getIt.registerFactory<Dio>(Dio.new);
 
   // PubApi
   getIt.registerLazySingleton<PubApi>(() => PubApi(getIt<Dio>()));

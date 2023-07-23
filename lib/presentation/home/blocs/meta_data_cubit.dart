@@ -37,9 +37,9 @@ class MetaDataCubit extends Cubit<MetaDataState> {
           ),
         );
 
-  void checkPlatform(String s, bool value) {
+  void checkPlatform(String s, {bool platformChecked = false}) {
     final platforms = state.platforms.toList();
-    if (value) {
+    if (platformChecked) {
       platforms.add(s);
     } else {
       platforms.remove(s);
