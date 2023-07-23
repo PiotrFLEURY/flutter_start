@@ -37,7 +37,7 @@ jobs:
       - uses: subosito/flutter-action@v2
       # Install Ninja-build
       - name: Setup Ninja
-        uses: ashutoshvarma/setup-ninja@v1
+        uses: - uses: seanmiddleditch/gha-setup-ninja@v3
       # Run pub get
       - name: ⬇️ Get dependencies
         run: flutter pub get
