@@ -31,6 +31,7 @@ jobs:
       - name: 🔍️ Perform static analysis, 🎨 check formatting, and 🧪 run tests
         run: |
           flutter analyze &
+          dart run custom_lint &
           dart format --set-exit-if-changed . &
           flutter test &
           wait

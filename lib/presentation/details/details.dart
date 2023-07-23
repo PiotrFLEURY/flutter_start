@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_start/domain/entities/entities.dart';
-import 'package:flutter_start/presentation/details/blocs/details_cubit.dart';
-import 'package:flutter_start/presentation/details/blocs/states/details_state.dart';
+import 'package:flutter_start/providers.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Details extends StatelessWidget {
+class Details extends ConsumerWidget {
   static const route = 'details/:packageName';
 
   static String packageRoute(String name) => '/details/$name';
@@ -15,43 +14,30 @@ class Details extends StatelessWidget {
   const Details({super.key, required this.packageName});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider<DetailsCubit>(
-      create: (context) => DetailsCubit(
-        packageName: packageName,
-      ),
-      child: _Details(),
-    );
-  }
-}
-
-class _Details extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<DetailsCubit, DetailsState>(
-      builder: (context, state) => Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => GoRouter.of(context).pop(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final details = ref.watch(detailsNotifierProvider(packageName));
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => GoRouter.of(context).pop(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _PackageTitle(details.packageDetails),
+          ),
+          _SupportedPlatforms(details.packageDetails),
+          _PackageScore(details.packageDetails),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              details.packageDetails?.description ?? 'Loading...',
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _PackageTitle(state.packageDetails),
-            ),
-            _SupportedPlatforms(state.packageDetails),
-            _PackageScore(state.packageDetails),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                state.packageDetails?.description ?? 'Loading...',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -137,7 +123,9 @@ class _PackageScore extends StatelessWidget {
           _BiColorText(text: '$_likes', subText: ' likes'),
           _BiColorText(text: '$_pubPoints', subText: ' pub points'),
           _BiColorText(
-              text: '${(_score * 100).round()}%', subText: ' popularity',),
+            text: '${(_score * 100).round()}%',
+            subText: ' popularity',
+          ),
         ],
       ),
     );

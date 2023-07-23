@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_start/presentation/home/blocs/states/states.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_start/presentation/home/notifiers/states/states.dart';
 
 const supportedPlatforms = [
   'android',
@@ -24,8 +23,8 @@ const supportedIosLanguages = [
 const defaultAndroidLanguage = 'kotlin';
 const defaultIosLanguage = 'swift';
 
-class MetaDataCubit extends Cubit<MetaDataState> {
-  MetaDataCubit()
+class MetaDataNotifier extends StateNotifier<MetaDataState> {
+  MetaDataNotifier()
       : super(
           const MetaDataState(
             org: 'com.example',
@@ -44,30 +43,26 @@ class MetaDataCubit extends Cubit<MetaDataState> {
     } else {
       platforms.remove(s);
     }
-    emit(state.copyWith(platforms: platforms));
+    state = state.copyWith(platforms: platforms);
   }
 
   void orgChanged(String value) {
-    emit(state.copyWith(org: value));
+    state = state.copyWith(org: value);
   }
 
   void nameChanged(String value) {
-    emit(state.copyWith(name: value));
+    state = state.copyWith(name: value);
   }
 
   void descriptionChanged(String value) {
-    emit(state.copyWith(description: value));
+    state = state.copyWith(description: value);
   }
 
   void androidLanguageChanged(String value) {
-    emit(state.copyWith(androidLanguage: value));
+    state = state.copyWith(androidLanguage: value);
   }
 
   void iosLanguageChanged(String value) {
-    emit(state.copyWith(iosLanguage: value));
+    state = state.copyWith(iosLanguage: value);
   }
-}
-
-extension MetaDataCubitExtension on BuildContext {
-  MetaDataCubit get metaDataCubit => read<MetaDataCubit>();
 }
