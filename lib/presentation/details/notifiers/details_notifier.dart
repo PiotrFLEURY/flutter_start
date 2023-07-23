@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_start/domain/use_cases/get_package_details.dart';
-import 'package:flutter_start/presentation/details/blocs/states/details_state.dart';
+import 'package:flutter_start/presentation/details/notifiers/states/details_state.dart';
 
 class DetailsNotifier extends StateNotifier<DetailsState> {
   final String packageName;
