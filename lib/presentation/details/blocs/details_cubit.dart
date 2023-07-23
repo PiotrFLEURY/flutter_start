@@ -1,14 +1,14 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_start/domain/use_cases/get_package_details.dart';
-import 'package:flutter_start/injection.dart';
 import 'package:flutter_start/presentation/details/blocs/states/details_state.dart';
 
-class DetailsCubit extends Cubit<DetailsState> {
+class DetailsNotifier extends StateNotifier<DetailsState> {
   final String packageName;
-  final GetPackageDetails getPackageDetails = getIt();
+  final GetPackageDetails getPackageDetails;
 
-  DetailsCubit({
+  DetailsNotifier({
     required this.packageName,
+    required this.getPackageDetails,
   }) : super(
           const DetailsState(packageDetails: null),
         ) {
@@ -17,9 +17,7 @@ class DetailsCubit extends Cubit<DetailsState> {
 
   Future<void> _fetchData() async {
     getPackageDetails(packageName).then(
-      (value) => emit(
-        DetailsState(packageDetails: value),
-      ),
+      (value) => state = DetailsState(packageDetails: value),
     );
   }
 }

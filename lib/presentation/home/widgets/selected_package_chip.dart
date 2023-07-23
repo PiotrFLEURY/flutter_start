@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start/presentation/home/blocs/blocs.dart';
-import 'package:flutter_start/presentation/home/blocs/states/states.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_start/presentation/home/notifiers/states/states.dart';
+import 'package:flutter_start/providers.dart';
 
-class SelectedPackageChip extends StatelessWidget {
+class SelectedPackageChip extends ConsumerWidget {
   final CheckedPackage checkedPackage;
 
   const SelectedPackageChip({
@@ -11,7 +12,7 @@ class SelectedPackageChip extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Chip(
       backgroundColor: Theme.of(context).colorScheme.secondary,
       label: Row(
@@ -30,9 +31,11 @@ class SelectedPackageChip extends StatelessWidget {
               ),
             ),
           GestureDetector(
-            onTap: () => context.packageListCubit.toggleDev(checkedPackage),
-            onDoubleTap: () => _uncheckPackage(context, checkedPackage),
-            onLongPress: () => _uncheckPackage(context, checkedPackage),
+            onTap: () => ref
+                .read(packageListNotifierProvider.notifier)
+                .toggleDev(checkedPackage),
+            onDoubleTap: () => _uncheckPackage(context, ref, checkedPackage),
+            onLongPress: () => _uncheckPackage(context, ref, checkedPackage),
             child: Text(
               checkedPackage.packageName,
               style: const TextStyle(
@@ -45,11 +48,15 @@ class SelectedPackageChip extends StatelessWidget {
     );
   }
 
-  void _uncheckPackage(BuildContext context, CheckedPackage checkedPackage) {
-    context.packageListCubit.check(
-      checkedPackage.packageName,
-      packageChecked: false,
-    );
+  void _uncheckPackage(
+    BuildContext context,
+    WidgetRef ref,
+    CheckedPackage checkedPackage,
+  ) {
+    ref.read(packageListNotifierProvider.notifier).check(
+          checkedPackage.packageName,
+          packageChecked: false,
+        );
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Unchecked ${checkedPackage.packageName}'),

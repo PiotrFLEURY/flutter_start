@@ -1,5 +1,5 @@
 import 'package:flutter_start/domain/entities/command.dart';
-import 'package:flutter_start/presentation/home/blocs/blocs.dart';
+import 'package:flutter_start/presentation/home/notifiers/notifiers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'meta_data_state.freezed.dart';

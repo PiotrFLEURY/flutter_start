@@ -2,7 +2,7 @@ import 'package:flutter_start/data/sources/remote/pub_api.dart';
 import 'package:flutter_start/domain/entities/package_details.dart';
 import 'package:flutter_start/domain/entities/package_list.dart';
 import 'package:flutter_start/domain/repositories/package_repository.dart';
-import 'package:flutter_start/presentation/home/blocs/meta_data_cubit.dart';
+import 'package:flutter_start/presentation/home/notifiers/meta_data_notifier.dart';
 
 class PackageRepositoryImpl extends PackageRepository {
   final PubApi _pubApi;

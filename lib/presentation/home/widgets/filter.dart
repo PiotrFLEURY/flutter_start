@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start/presentation/home/blocs/package_list_cubit.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_start/providers.dart';
 
-class Filter extends StatefulWidget {
+class Filter extends ConsumerStatefulWidget {
   const Filter({super.key});
 
   @override
-  State<Filter> createState() => FilterState();
+  ConsumerState<Filter> createState() => FilterState();
 }
 
-class FilterState extends State<Filter> {
+class FilterState extends ConsumerState<Filter> {
   final controller = TextEditingController();
 
   @override
@@ -20,12 +21,13 @@ class FilterState extends State<Filter> {
         suffix: IconButton(
           onPressed: () {
             controller.clear();
-            context.packageListCubit.filter('');
+            ref.read(packageListNotifierProvider.notifier).filter('');
           },
           icon: const Icon(Icons.close),
         ),
       ),
-      onChanged: (value) => context.packageListCubit.filter(value),
+      onChanged: (value) =>
+          ref.read(packageListNotifierProvider.notifier).filter(value),
     );
   }
 }
