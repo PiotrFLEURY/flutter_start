@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'details_state.dart';
 
@@ -27,28 +27,32 @@ mixin _$DetailsState {
 abstract class $DetailsStateCopyWith<$Res> {
   factory $DetailsStateCopyWith(
           DetailsState value, $Res Function(DetailsState) then) =
-      _$DetailsStateCopyWithImpl<$Res>;
+      _$DetailsStateCopyWithImpl<$Res, DetailsState>;
+  @useResult
   $Res call({PackageDetails? packageDetails});
 }
 
 /// @nodoc
-class _$DetailsStateCopyWithImpl<$Res> implements $DetailsStateCopyWith<$Res> {
+class _$DetailsStateCopyWithImpl<$Res, $Val extends DetailsState>
+    implements $DetailsStateCopyWith<$Res> {
   _$DetailsStateCopyWithImpl(this._value, this._then);
 
-  final DetailsState _value;
   // ignore: unused_field
-  final $Res Function(DetailsState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? packageDetails = freezed,
   }) {
     return _then(_value.copyWith(
-      packageDetails: packageDetails == freezed
+      packageDetails: freezed == packageDetails
           ? _value.packageDetails
           : packageDetails // ignore: cast_nullable_to_non_nullable
               as PackageDetails?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -59,26 +63,25 @@ abstract class _$$_DetailsStateCopyWith<$Res>
           _$_DetailsState value, $Res Function(_$_DetailsState) then) =
       __$$_DetailsStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({PackageDetails? packageDetails});
 }
 
 /// @nodoc
 class __$$_DetailsStateCopyWithImpl<$Res>
-    extends _$DetailsStateCopyWithImpl<$Res>
+    extends _$DetailsStateCopyWithImpl<$Res, _$_DetailsState>
     implements _$$_DetailsStateCopyWith<$Res> {
   __$$_DetailsStateCopyWithImpl(
       _$_DetailsState _value, $Res Function(_$_DetailsState) _then)
-      : super(_value, (v) => _then(v as _$_DetailsState));
+      : super(_value, _then);
 
-  @override
-  _$_DetailsState get _value => super._value as _$_DetailsState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? packageDetails = freezed,
   }) {
     return _then(_$_DetailsState(
-      packageDetails: packageDetails == freezed
+      packageDetails: freezed == packageDetails
           ? _value.packageDetails
           : packageDetails // ignore: cast_nullable_to_non_nullable
               as PackageDetails?,
@@ -104,16 +107,16 @@ class _$_DetailsState implements _DetailsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DetailsState &&
-            const DeepCollectionEquality()
-                .equals(other.packageDetails, packageDetails));
+            (identical(other.packageDetails, packageDetails) ||
+                other.packageDetails == packageDetails));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(packageDetails));
+  int get hashCode => Object.hash(runtimeType, packageDetails);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DetailsStateCopyWith<_$_DetailsState> get copyWith =>
       __$$_DetailsStateCopyWithImpl<_$_DetailsState>(this, _$identity);
 }

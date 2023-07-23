@@ -47,7 +47,7 @@ class _Details extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 state.packageDetails?.description ?? 'Loading...',
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
           ],
@@ -98,7 +98,7 @@ class _PackageTitle extends StatelessWidget {
       children: [
         Text(
           '$_name $_version',
-          style: Theme.of(context).textTheme.headline3,
+          style: Theme.of(context).textTheme.displaySmall,
         ),
         IconButton(
           onPressed: _launchPubUrl,
@@ -162,12 +162,12 @@ class _BiColorText extends StatelessWidget {
             text: text,
             style: Theme.of(context)
                 .textTheme
-                .headline6!
+                .titleLarge!
                 .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
           TextSpan(
             text: ' $subText',
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         ],
       ),

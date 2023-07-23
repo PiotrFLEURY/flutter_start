@@ -24,7 +24,7 @@ class FlutterStart extends StatelessWidget {
             GoRoute(
               path: Details.route,
               builder: (BuildContext context, GoRouterState state) => Details(
-                packageName: state.params['packageName']!,
+                packageName: state.pathParameters['packageName']!,
               ),
             ),
           ]),
