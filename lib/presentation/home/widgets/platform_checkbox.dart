@@ -29,7 +29,7 @@ class PlatformCheckbox extends StatelessWidget {
           Checkbox(
             value: value,
             onChanged: (value) => onChanged(value!),
-          )
+          ),
         ],
       ),
     );

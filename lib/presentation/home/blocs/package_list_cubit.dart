@@ -29,36 +29,43 @@ class PackageListCubit extends Cubit<PackageListState> {
     emit(state.copyWith(filter: query));
   }
 
-  void check(bool? value, String packageName) {
-    final checked = value ?? false;
+  void check(String packageName, {bool? packageChecked}) {
+    final checked = packageChecked ?? false;
     if (checked) {
-      emit(state.copyWith(checkedPackages: [
-        ...state.checkedPackages,
-        CheckedPackage(packageName: packageName, dev: false)
-      ]));
+      emit(
+        state.copyWith(
+          checkedPackages: [
+            ...state.checkedPackages,
+            CheckedPackage(packageName: packageName, dev: false),
+          ],
+        ),
+      );
     } else {
       emit(
         state.copyWith(
           checkedPackages: state.checkedPackages
               .where(
-                  (checkedPackage) => checkedPackage.packageName != packageName)
+                (checkedPackage) => checkedPackage.packageName != packageName,
+              )
               .toList(),
         ),
       );
     }
   }
 
-  toggleDev(CheckedPackage checkedPackage) {
-    emit(state.copyWith(
-      checkedPackages: [
-        ...state.checkedPackages
-            .where((e) => e.packageName != checkedPackage.packageName),
-        CheckedPackage(
-          packageName: checkedPackage.packageName,
-          dev: !checkedPackage.dev,
-        ),
-      ],
-    ));
+  void toggleDev(CheckedPackage checkedPackage) {
+    emit(
+      state.copyWith(
+        checkedPackages: [
+          ...state.checkedPackages
+              .where((e) => e.packageName != checkedPackage.packageName),
+          CheckedPackage(
+            packageName: checkedPackage.packageName,
+            dev: !checkedPackage.dev,
+          ),
+        ],
+      ),
+    );
   }
 }
 

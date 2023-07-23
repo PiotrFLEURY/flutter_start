@@ -25,7 +25,7 @@ class FilterState extends State<Filter> {
           icon: const Icon(Icons.close),
         ),
       ),
-      onChanged: (String value) => context.packageListCubit.filter(value),
+      onChanged: (value) => context.packageListCubit.filter(value),
     );
   }
 }

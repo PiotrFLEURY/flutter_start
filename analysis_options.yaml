@@ -10,7 +10,7 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [lib/**/*.g.dart]
+  exclude: [lib/**/*.g.dart, lib/**/*.freezed.dart]
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -25,8 +25,60 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    always_declare_return_types: true
+    #always_specify_types: true
+    always_use_package_imports: true
+    avoid_classes_with_only_static_members: true
+    avoid_equals_and_hash_code_on_mutable_classes: true
+    avoid_function_literals_in_foreach_calls: true
+    avoid_init_to_null: true
+    avoid_null_checks_in_equality_operators: true
+    avoid_positional_boolean_parameters: true
+    avoid_private_typedef_functions: true
+    avoid_relative_lib_imports: true
+    avoid_return_types_on_setters: true
+    avoid_returning_this: true
+    avoid_setters_without_getters: true
+    avoid_types_on_closure_parameters: true
+    camel_case_extensions: true
+    camel_case_types: true
+    comment_references: true
+    constant_identifier_names: true
+    curly_braces_in_flow_control_structures: true
+    directives_ordering: true
+    empty_constructor_bodies: true
+    file_names: true
+    hash_and_equals: true
+    library_prefixes: true
+    lines_longer_than_80_chars: true
+    non_constant_identifier_names: true
+    omit_local_variable_types: true
+    one_member_abstracts: true
+    package_names: true
+    prefer_adjacent_string_concatenation: true
+    prefer_collection_literals: true
+    prefer_final_fields: true
+    prefer_generic_function_type_aliases: true
+    prefer_interpolation_to_compose_strings: true
+    prefer_initializing_formals: true
+    prefer_is_empty: true
+    prefer_is_not_empty: true
+    prefer_single_quotes: true
+    prefer_typing_uninitialized_variables: true
+    require_trailing_commas: true
+    slash_for_doc_comments: true
+    type_annotate_public_apis: true
+    type_init_formals: true
+    unnecessary_brace_in_string_interps: true
+    unnecessary_const: true
+    unnecessary_getters_setters: true
+    unnecessary_lambdas: true
+    unnecessary_new: true
+    unnecessary_this: true
+    use_function_type_syntax_for_parameters: true
+    use_setters_to_change_properties: true
+    use_string_in_part_of_directives: true
+    use_to_and_as_if_applicable: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

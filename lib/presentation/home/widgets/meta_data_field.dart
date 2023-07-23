@@ -37,7 +37,7 @@ class MetaDataFieldState extends State<MetaDataField> {
           icon: const Icon(Icons.close),
         ),
       ),
-      onChanged: (String value) => widget.onChanged?.call(value),
+      onChanged: (value) => widget.onChanged?.call(value),
     );
   }
 }

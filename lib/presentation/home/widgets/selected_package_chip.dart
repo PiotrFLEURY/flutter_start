@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start/presentation/home/blocs/states/states.dart';
 import 'package:flutter_start/presentation/home/blocs/blocs.dart';
+import 'package:flutter_start/presentation/home/blocs/states/states.dart';
 
 class SelectedPackageChip extends StatelessWidget {
   final CheckedPackage checkedPackage;
@@ -46,7 +46,10 @@ class SelectedPackageChip extends StatelessWidget {
   }
 
   void _uncheckPackage(BuildContext context, CheckedPackage checkedPackage) {
-    context.packageListCubit.check(false, checkedPackage.packageName);
+    context.packageListCubit.check(
+      checkedPackage.packageName,
+      packageChecked: false,
+    );
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Unchecked ${checkedPackage.packageName}'),
