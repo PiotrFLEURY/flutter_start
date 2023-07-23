@@ -12,7 +12,7 @@ class IosLanguageSelector extends StatelessWidget {
     return BlocBuilder<MetaDataCubit, MetaDataState>(
       builder: (context, state) => Column(
         children: [
-          Text('IOS language', style: Theme.of(context).textTheme.headline6),
+          Text('IOS language', style: Theme.of(context).textTheme.titleLarge),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

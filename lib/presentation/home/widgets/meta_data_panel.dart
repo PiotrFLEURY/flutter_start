@@ -19,7 +19,7 @@ class MetaDataPanel extends StatelessWidget {
                 child: ListView(
                   children: [
                     Text('MetaData',
-                        style: Theme.of(context).textTheme.headline4),
+                        style: Theme.of(context).textTheme.headlineMedium),
                     MetaDataField(
                       label: 'org',
                       initialValue: state.org,
@@ -44,7 +44,7 @@ class MetaDataPanel extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text('Platforms',
-                          style: Theme.of(context).textTheme.headline6),
+                          style: Theme.of(context).textTheme.titleLarge),
                     ),
                     Wrap(
                       direction: Axis.horizontal,

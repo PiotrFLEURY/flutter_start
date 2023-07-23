@@ -28,12 +28,12 @@ class PackageRepositoryImpl extends PackageRepository {
     final platforms = platformsModel == null
         ? supportedPlatforms
         : [
-            if (platformsModel?.android != null) 'android',
-            if (platformsModel?.ios != null) 'ios',
-            if (platformsModel?.web != null) 'web',
-            if (platformsModel?.windows != null) 'windows',
-            if (platformsModel?.macos != null) 'macos',
-            if (platformsModel?.linux != null) 'linux',
+            if (platformsModel.android != null) 'android',
+            if (platformsModel.ios != null) 'ios',
+            if (platformsModel.web != null) 'web',
+            if (platformsModel.windows != null) 'windows',
+            if (platformsModel.macos != null) 'macos',
+            if (platformsModel.linux != null) 'linux',
           ];
 
     return PackageDetails(
