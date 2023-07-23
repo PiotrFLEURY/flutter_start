@@ -20,13 +20,13 @@ jobs:
         run: flutter analyze
       # Check formatting
       - name: 🎨 Check formatting
-        run: dart format --set-exit-if-changed
+        run: dart format --set-exit-if-changed .
       # Run tests
       - name: 🧪 Run tests
         run: flutter test
   build-matrix:
     name: 🏗️ Build matrix
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.platform }}
     strategy:
       matrix:
         platform: [linux, macos, windows]
