@@ -29,7 +29,7 @@ jobs:
     runs-on: ${{ matrix.platform }}-latest
     strategy:
       matrix:
-        platform: [ubuntu, macos, windows]
+        platform: [ubuntu, windows] #TODO: macos - need to add RunnerTests with Xcode
     steps:
       # Checkout sources
       - uses: actions/checkout@v3
@@ -38,7 +38,6 @@ jobs:
       # Install Linux prerequisites
       - name: Setup Flutter tools for Linux
         if: matrix.platform == 'ubuntu'
-        #uses: seanmiddleditch/gha-setup-ninja@v3
         run: sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev
       # Run pub get
       - name: ⬇️ Get dependencies
